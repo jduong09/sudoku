@@ -15,7 +15,8 @@ class Board
         next if char == "\n"
 
         if char == "0"
-          array_line << char
+          tile = Tile.new(char.to_i, false)
+          array_line << tile
           next
         end
 
@@ -26,6 +27,10 @@ class Board
     end
 
     return array
+  end
+
+  def solved?
+
   end
 
   def render
@@ -43,5 +48,17 @@ class Board
       string += row_string
     end
     puts string
+  end
+
+  def update_board(input, tile)
+    tile.change_value(input)
+  end
+
+  def [](row, col)
+    @grid[row][col]
+  end
+
+  def []=(row, col, value)
+    @grid[row][col] = value
   end
 end
