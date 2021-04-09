@@ -7,8 +7,12 @@ class Game
   end
 
   def game_loop
+    until @board.solved?
+      @board.render
+      take_turn
+    end
     @board.render
-    take_turn
+    return "Solved! Great job #{@player_name}!"
   end
 
   def take_turn
@@ -17,7 +21,6 @@ class Game
     input = gets.chomp.to_i
     @board.update_board(input, tile)
     system("clear")
-    @board.render    
   end
 
   def select_tile
